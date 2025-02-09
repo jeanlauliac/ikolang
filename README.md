@@ -1,6 +1,6 @@
-# Iko programming language
+<img align="right" src="./logo.svg" alt="Iko logo" width="150" />
 
-<img src="./logo.svg" alt="Iko logo" width="150" />
+# Iko programming language
 
 Iko is an experimental programming language designed around the idea of
 functional reactive programming, but with an approachable syntax not
