@@ -1,14 +1,28 @@
-<img align="right" src="./logo.svg" alt="Iko logo" width="150" />
-
 # Iko programming language
+
+<img align="right" src="./logo.svg" alt="Iko logo" width="100" />
 
 Iko is an experimental programming language designed around the idea of
 functional reactive programming, but with an approachable syntax not
 unlike JavaScript and other imperative languages.
 
+Here's the classic imperative hello world:
+
 ```
-let main = mut () {
-    print("Hello, world!");
+use std
+
+let main = mut (){
+    std.print("Hello, world");
+}
+```
+
+Here's the same in reactive style, in the browser:
+
+```
+use std
+
+let main = mut (){
+    std.bindNode((){ <p>Hello, world</p> })    
 }
 ```
 
