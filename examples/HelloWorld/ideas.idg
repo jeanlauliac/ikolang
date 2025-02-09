@@ -1,0 +1,434 @@
+use io, web as w
+
+def add (a: int, b: int) int { a + b }
+
+def fibo (n: int) int {
+    if n <= 1 { return 1 }
+    fibo(n - 1) + fibo(n - 2)
+}
+
+let incr = add_numbers(1)
+let result = [1, 3, 4].map(incr)
+
+let hello = (name: str): str {
+    "hello, {name}"
+};
+
+
+
+let pub main = mut (){
+    let name = "jean"
+    io.print("hello {name}")
+
+    io.write_file("test.txt", () => {
+        
+    })
+
+    w.route("/hello", () =>
+        <html>
+            <body>hello, world</body>
+        </html>    
+    )
+}
+
+declare print: mut (msg: str) => void
+
+
+
+
+/* native support for html and css */
+<div color="red">
+    <style>
+        p {
+            color: red;
+        }
+    </style>
+
+    <!-- inside html you can just call functions (not like components in react) ->
+    {get_note(note, color: 'red')}
+</div>
+
+
+let get_note = (target, color){
+    <div color={color}>
+        {target.title}
+        <button>edit</button>
+    </div>
+}
+
+
+let Person = struct {
+    pub name: str
+    pub date_of_birth: date
+    nickname: str?
+    status: enum { Online, Offline, Away }
+}
+
+if person.nickname != none {
+    io.print(person.nickname)
+}
+
+
+let jean = Person {
+    name: "Jean",
+    date_of_birth: datetime("1990-09-24"),
+    nickname: None {},
+    status: 'online'
+}
+
+// optional value
+pub type opt<T> = None | Some(value: T)
+
+use json
+let main = () => {
+    io.print("test")
+    json.from(Person { name: "blah" })      // {"name": "blah"}
+    json.parse<Person>("{}")                // throw error
+}
+
+
+let Token = enum {
+    String(value: str)
+    Identifier(value: str)
+    Operator(value: str)
+    End
+}
+
+
+let blah = Token.String("hello")
+
+
+
+// module json
+let __unsafe parse = <T>(source: str): T {
+    // cast objects to json
+}
+
+
+
+let hello = (name: str): str => {
+    return "hello, {name}"
+};
+
+let hello = () "hello, {name}";
+
+let main = () {
+    io.print("hello world")
+}
+
+let test = 34
+let main = (test)
+
+
+
+let sam = []
+push(234, into: sam)
+sam.push(34)
+
+push(sam, 34)
+sam:push(34)
+
+while let item = pop(queue) {
+
+}
+
+
+
+pub let main = mut () {
+    let counter = 0
+
+    // suffix for time, percentages, etc.
+    io.schedule(10s, () { counter++ })
+
+    let b = 34%;
+}
+
+
+
+
+dom.bind(document.body, () => <div>mouse: {mouse.position.x} {mouse.position.y}</div>)
+
+
+let currentDatetime = () => "the current time is: {datetime.format(datetime.now, 'HH:MM:ss')}"
+
+dom.bind(document.body, () => {
+    let dt = currentDatetime()
+
+    if dt.len() > 50 {
+        return "too long"
+    }
+
+    slot counter = 0
+    return <div>
+        {slot}
+        {currentDatetime()}
+    </div>
+})
+
+
+
+use now, format from datetime
+use opt from std
+
+
+use print from io
+
+let main = mut () { 32 }
+
+
+map(list, (x) { x + 1 })
+
+
+// Equivalents:
+let el = Element {
+    tag: "div"
+    children: [Text("hello"), Text(name)]
+}
+let el = <div>hello, {name}</div>
+
+
+
+// An enum is just an union of types, nothing more. You can use `Text` globally with no restrictions
+let Node = enum {
+    Text { value: str }
+    Element { tag: str, children: Node[] }
+}
+
+// In code you can narrow a type with `is`
+let node: Node;
+if (node is Text) {
+    print("value: {node.value}")
+}
+
+// Generic types are functions returning types. Unlike Typescript, this means you can use the
+// same syntax to build types, it doesn't have to be obscure.
+let StrArray = str[]
+let GenArray = (Item: type) { Item[] }
+
+let printAllStrings = (strings: GenArray(string)): void {
+    for (let str of strings) {
+        print(str)
+    }
+}
+
+// Optional type. Uses shorthand form for the function's return value.
+let Opt = (T: type) enum {
+    Some { value: T }
+    None {}
+}
+
+
+// Combination of types and values for a very simplified printf
+let printf = (format: str, ...values: any[]) {
+    let result = ''
+
+    for (let i = 0; i < len(format); ++i) {
+        if (format === 's') {
+            assert(values[i] is str)
+            result += values[i]
+        }
+        if (format === 'd') {
+            assert(values[i] is i32)
+            result += std.format(values[i])
+        }
+    }
+
+    result
+}
+
+
+
+// ERROR: we cannot call reactive functions at the top level.
+let now = std.now()
+
+// ERROR: cannot call mutative functions at the top level.
+let foo = std.print("hello")
+
+// Okay: call reactive function in renderer.
+std.bind(document.body, () {
+    let now = std.now()
+    <div>{now}</div>
+})
+
+// ERROR: call reactive function from slot initializer.
+std.bind(document.body, () {
+    slot now = std.now()
+    //             ^^^ Cannot call reactive function as a slot initializer value. This is because
+    //                 it would only represent a snapshot of the current time and never update.
+    <div>{now}</div>
+})
+
+// Okay: update variables from inner functions.
+std.bind(document.body, () {
+    let now = 0
+
+    let updateNow = mut () {
+        now = std.now()
+    }
+
+    updateNow()
+    <div>{now}</div>
+})
+
+
+
+// =====================================================================================
+// Define an entity that's getting persised in a database
+let User = {
+    name: str
+    email: str
+}
+
+let Task = {
+    name: str
+    isDone: bool
+    creationDate: datetime
+    owner: User
+}
+
+// Backing database is customizable with a driver
+let db = std.database({
+    tasks: Task[]
+    users: User[]
+}, std.env["POSTGRES_ACCESS_TOKEN"])
+
+// Implement a simplified TodoMVC
+std.serve(() {
+    slot newTask = ""
+    let tasks = db.tasks.sortedBy("creationDate").takeFirst(100)
+    let user = db.users.first()
+
+    let onTicked = mut (task) {
+        task.isDone = !task.isDone
+    }
+
+    let list = if tasks.size > 0 {
+        <ul>{tasks.map((task) {
+            <li>
+                <input type="checkbox" checked={task.isDone} onClick={() { tick(onTicked) }} />
+                {task.name}
+            </li>
+        })}</ul>
+    } else {
+        <p>No tasks yet.</p>
+    }
+
+    let addTask = mut () {
+        tasks.push({ name: newTask, isDone: false, creationDate: std.now(), owner: user })
+        newTask = ""
+    }
+
+    let onKeyPress = mut (ev) {
+        if ev.key == "Enter" { addTask() }
+    }
+
+    <form onSubmit={addTask}>
+        <input value={newTask} onKeyPress={onKeyPress} />
+        <input type="submit">Add</input>
+        {list}
+    </form>
+})
+
+// let fetch = native (entity: ent, orderBy: str) void
+// let mutate = native mut (fn: () => void) void
+
+// =====================================================================================
+
+// // there is a file called `lexer.idg`
+// use lexer
+// let a = lexer.tokenize("hello world")
+
+
+
+
+// anonymous structs. FOO is of type "typeof FOO"
+let FOO = { test: "hello" }
+let BAR = typeof FOO { test: "bye" }
+
+// defining a struct  (syntax sugar for `let Point = struct { ... }`)
+struct Point {
+    x: i32
+    y: i32
+
+    sum(&p1: Point, p2: Point) {
+        Point {
+            // can access fields on a reference
+            x: p1.x + p2.x
+            y: p1.y + p2.y
+        }
+    }
+
+    length(p: Point) {
+        p.x * p.x + p.y * p.y
+    }
+}
+
+
+let pt = Point { x: 2, y: 8 }
+// Explicit call
+let result = Point.sum(pt, Point { x: 1, y: 9 })
+
+// Implicit call. Arg is automatically deducted as being Point
+let result = pt.sum({ x: 1, y: 9 })
+pt.length()
+
+// You can still use the explicit functions to do mapping for ex.
+const allLengths = listOfPoints.map(Point.length)
+
+// Equivalent to:
+const allLengths = listOfPoints.map((pt) { pt.length() })
+
+// equivalences to push into a list. This works because [] is of type std.List at runtime
+let lst = []
+std.List.push(lst, 43)
+lst.push(43)
+
+// List are copied by value by default
+let lst = [1]
+let lst2 = lst
+lst2.push(2)
+std.debug(lst) //=> [1]
+
+// Enums are just choice between different types
+def Element struct { tagName: string, ... }
+def None struct {}
+def HtmlNode enum {
+    number
+    string
+    Element
+    None
+}
+
+// Enums can be matched exhaustively
+match someVar {
+    // matching literals
+    "some literal" { ... }
+    23 { ... }
+
+    // matching various types
+    string, number { "value: {someVar}" }
+    SomeStruct { ... }
+
+    // destructuring structs
+    Element { tagName } => { "<{tagName}>" }
+    
+    // destructuring lists
+    [item1, item2, ...other] { ... }
+
+    // Rest case
+    _ { }
+}
+
+
+// Module system
+use std         //=> standard module, contains everything else
+use foobar      //=> imports local module "foobar.idg"?
+
+
+
+
+
+// problem with references: ability to set values of inner slots
+def inp renderInput(name)
+*(inp.children[0].attributes["value"]) = "blah"
+<div>{inp}</div>

@@ -1,0 +1,39 @@
+{
+    "name": "ikolang",
+    "version": "1.0.0",
+    "description": "Iko language toolchain",
+    "main": "idg.js",
+    "directories": {
+        "example": "examples"
+    },
+    "scripts": {
+        "test": "vitest run && npm run test:typescript && npm run test:format && echo '\nLooking good!'",
+        "snap": "vitest run --update",
+        "start": "tsx idg.ts",
+        "serve": "sh ./build_workers.sh && parcel test_app/index.html",
+        "test:typescript": "tsc --noEmit",
+        "test:format": "prettier --check .",
+        "reformat": "prettier --write ."
+    },
+    "author": "Jean Lauliac <jean@lauliac.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/jsdom": "^21.1.0",
+        "@types/node": "^22.10.10",
+        "jsdom": "^26.0.0",
+        "monaco-editor": "^0.52.2",
+        "parcel": "^2.13.3",
+        "prettier": "^3.2.5",
+        "ts-node": "^10.9.1",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.3",
+        "vitest": "^3.0.4"
+    },
+    "dependencies": {
+        "chalk": "^5.4.1"
+    },
+    "__comment": "https://parceljs.org/features/dependency-resolution/#enabling-package-exports",
+    "@parcel/resolver-default": {
+        "packageExports": true
+    }
+}

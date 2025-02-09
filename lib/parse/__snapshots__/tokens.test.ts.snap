@@ -1,0 +1,121 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`identifier > identifier 1`] = `
+{
+  "end": {
+    "column": 4,
+    "line": 1,
+  },
+  "start": {
+    "column": 1,
+    "line": 1,
+  },
+  "type": "identifier",
+  "value": "foo",
+}
+`;
+
+exports[`keyword > keyword 1`] = `
+{
+  "end": {
+    "column": 4,
+    "line": 1,
+  },
+  "start": {
+    "column": 1,
+    "line": 1,
+  },
+  "type": "keyword",
+  "value": "mut",
+}
+`;
+
+exports[`number > number 1`] = `
+{
+  "end": {
+    "column": 5,
+    "line": 1,
+  },
+  "start": {
+    "column": 1,
+    "line": 1,
+  },
+  "type": "integer",
+  "value": 1234,
+}
+`;
+
+exports[`operator > operator 1`] = `
+{
+  "end": {
+    "column": 3,
+    "line": 1,
+  },
+  "start": {
+    "column": 1,
+    "line": 1,
+  },
+  "type": "operator",
+  "value": "/>",
+}
+`;
+
+exports[`single-line comment > single-line comment 1`] = `
+{
+  "end": {
+    "column": 1,
+    "line": 2,
+  },
+  "start": {
+    "column": 1,
+    "line": 1,
+  },
+  "type": "newline",
+}
+`;
+
+exports[`single-line comment, multiple lines > single-line comment, multiple lines 1`] = `
+{
+  "end": {
+    "column": 1,
+    "line": 3,
+  },
+  "start": {
+    "column": 1,
+    "line": 1,
+  },
+  "type": "newline",
+}
+`;
+
+exports[`string > string 1`] = `
+{
+  "end": {
+    "column": 15,
+    "line": 1,
+  },
+  "expressions": [],
+  "parts": [
+    "hello, world",
+  ],
+  "start": {
+    "column": 1,
+    "line": 1,
+  },
+  "type": "string",
+}
+`;
+
+exports[`trailing whitespace > trailing whitespace 1`] = `
+{
+  "end": {
+    "column": 1,
+    "line": 2,
+  },
+  "start": {
+    "column": 1,
+    "line": 1,
+  },
+  "type": "newline",
+}
+`;

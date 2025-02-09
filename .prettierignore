@@ -1,0 +1,3 @@
+# auto gen snapshot files
+*.cjs
+/.tap

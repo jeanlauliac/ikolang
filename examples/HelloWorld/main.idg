@@ -1,0 +1,5 @@
+use std
+
+pub let main = mut () {
+    std.print("hello world")
+}

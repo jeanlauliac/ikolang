@@ -1,0 +1,141 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`always collapses whitespace in HTML tags > content should be trimmed and newlines replaces by single space 1`] = `"<div>hello <br /> <span>,</span> world</div>"`;
+
+exports[`always collapses whitespace in HTML tags > lone child should be be the sole children 1`] = `"<div><span>hello</span></div>"`;
+
+exports[`always collapses whitespace in HTML tags > lone string should be trimmed 1`] = `"<div>hello</div>"`;
+
+exports[`always collapses whitespace in HTML tags > should be compacted to self-closing tag 1`] = `"<div />"`;
+
+exports[`throws: "foo > invalid code: "foo 1`] = `
+""foo
+^
+error(1:1): This string does not seem to have a closing quote."
+`;
+
+exports[`throws: "foo{bar 34 > invalid code: "foo{bar 34 1`] = `
+""foo{bar 34
+         ^
+error(1:10): After an expression inside a string, a closing curly brace '}' is expected before the
+remainder of the string."
+`;
+
+exports[`throws: () > invalid code: () 1`] = `
+"()
+  ^
+error(1:3): After parentheses which contain zero or more than one clause, an opening bracket '{' is
+required to define the funtion body. Tuples are not supported. A function is also required after
+the \`mut\` keyword."
+`;
+
+exports[`throws: (){ pub let a = "foo" } > invalid code: (){ pub let a = "foo" } 1`] = `
+"(){ pub let a = "foo" }
+    ^
+error(1:5): In a function body, function statements are expected. It could be a variable
+declaration, or a standalone expression."
+`;
+
+exports[`throws: (23, 65) > invalid code: (23, 65) 1`] = `
+"(23, 65)
+        ^
+error(1:9): After parentheses which contain zero or more than one clause, an opening bracket '{' is
+required to define the funtion body. Tuples are not supported. A function is also required after
+the \`mut\` keyword."
+`;
+
+exports[`throws: (bar, 34 + 65) { let a = "foo" } > invalid code: (bar, 34 + 65) { let a = "foo" } 1`] = `
+"(bar, 34 + 65) { let a = "foo" }
+      ^
+error(1:7): In a function parameter list, valid parameter names are expected. But, this looks like
+an expression. This is considered a function parameter because curly brackets are used."
+`;
+
+exports[`throws: (foobar + ) > invalid code: (foobar + ) 1`] = `
+"(foobar + )
+          ^
+error(1:11): After a binary operator like '+', an expression is required. For example you might
+write \`value + 1\`."
+`;
+
+exports[`throws: < > > invalid code: < > 1`] = `
+"< >
+  ^
+error(1:3): After the HTML tag opening operator '<', a tag name was expected, as a simple
+identifier. For example \`<div>\` or \`<input>\`."
+`;
+
+exports[`throws: <button  > invalid code: <button  1`] = `
+"<button 
+        ^
+error(1:9): After the attributes of an HTML tag, the closing caret '>' is expected. For example you
+might write <button class="test">"
+`;
+
+exports[`throws: <button ewf 3 > > invalid code: <button ewf 3 > 1`] = `
+"<button ewf 3 >
+            ^
+error(1:13): After an HTML attribute name, the equal sign '=' is expected. For example you might
+write \`ewf="value"\`."
+`;
+
+exports[`throws: <button> > invalid code: <button> 1`] = `
+"<button>
+        ^
+error(1:9): Unclosed HTML tag. Expected closing tag \`</button>\`."
+`;
+
+exports[`throws: <button></something> > invalid code: <button></something> 1`] = `
+"<button></something>
+          ^
+error(1:11): The tag does not match the opening tag. It was expected to find \`</button>\`. If it was
+meant to be self-closing like for ex. \`<br />\`, change the opening tag."
+`;
+
+exports[`throws: ? > invalid code: ? 1`] = `
+"?
+^
+error(1:1): Unexpected character '?'. It could be you meant to use a different operator, or that
+this character is not supported as part of an identifier."
+`;
+
+exports[`throws: { 34 } > invalid code: { 34 } 1`] = `
+"{ 34 }
+  ^
+error(1:3): An object field must start with a name, as a single identifier, but this looks like an
+expression. For example, you might write \`{ hello: "world" }\`."
+`;
+
+exports[`throws: { foo 54 } > invalid code: { foo 54 } 1`] = `
+"{ foo 54 }
+      ^
+error(1:7): After the field name, the operator ':' is expected to separate the field name and its
+value. For example, you might write \`foo: 34\` or \`foo: "hello"\`."
+`;
+
+exports[`throws: 324980934890238490238904823084023840832849 > invalid code: 324980934890238490238904823084023840832849 1`] = `
+"324980934890238490238904823084023840832849
+^
+error(1:1): This integer literal is too large (positive or negative) to be safely represented in
+memory."
+`;
+
+exports[`throws: foobar. 34 > invalid code: foobar. 34 1`] = `
+"foobar. 34
+        ^
+error(1:9): After the "." operator, an identifier (such as a variable name) is expected. For
+example you might write \`std.print\` or \`someObject.field\`."
+`;
+
+exports[`throws: if foo "bar" > invalid code: if foo "bar" 1`] = `
+"if foo "bar"
+       ^
+error(1:8): After the if condition, an opening brace '{' is expected"
+`;
+
+exports[`throws: mut 324 > invalid code: mut 324 1`] = `
+"mut 324
+    ^
+error(1:5): After the \`mut\` keyword, a function declaration is expected. For example \`mut (x) {
+std.print(x) }\`"
+`;
