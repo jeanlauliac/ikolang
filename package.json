@@ -21,7 +21,6 @@
         "@types/jsdom": "^21.1.0",
         "@types/node": "^22.10.10",
         "jsdom": "^26.0.0",
-        "monaco-editor": "^0.52.2",
         "parcel": "^2.13.3",
         "prettier": "^3.2.5",
         "ts-node": "^10.9.1",
@@ -30,7 +29,8 @@
         "vitest": "^3.0.4"
     },
     "dependencies": {
-        "chalk": "^5.4.1"
+        "chalk": "^5.4.1",
+        "monaco-editor": "^0.52.2"
     },
     "__comment": "https://parceljs.org/features/dependency-resolution/#enabling-package-exports",
     "@parcel/resolver-default": {
